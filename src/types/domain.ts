@@ -43,12 +43,15 @@ export interface Resource {
 
 export interface AppSettings {
   emailNotifications: boolean;
-  smsAlerts: boolean;
+  realTimeAlerts: boolean;
   autoDispatch: boolean;
   dataRetentionDays: number;
   highContrast: boolean;
   reduceMotion: boolean;
   largeText: boolean;
+  defaultView: string;
+  mapOverlay: boolean;
+  dataRetentionInterval: string;
 }
 
 export interface OperatorProfile {
@@ -85,12 +88,15 @@ export interface AppState {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   emailNotifications: true,
-  smsAlerts: false,
+  realTimeAlerts: false,
   autoDispatch: false,
   dataRetentionDays: 90,
   highContrast: false,
   reduceMotion: false,
   largeText: false,
+  defaultView: 'Global Dashboard',
+  mapOverlay: false,
+  dataRetentionInterval: '1 Hour',
 };
 
 export const DEFAULT_PROFILE: OperatorProfile = {
