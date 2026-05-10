@@ -1,0 +1,930 @@
+[
+  {
+    "screenId": "91b7b4b6ebcc49f2bc1a4ba4dcae3632",
+    "screenTitle": "System Error Recovery",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 175
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 179
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 183
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "Clear App Data &amp; Reset",
+        "line": 229
+      },
+      {
+        "type": "button",
+        "label": "Retry",
+        "line": 233
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 175
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 179
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 183
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "Clear App Data &amp; Reset",
+        "line": 229
+      },
+      {
+        "type": "button",
+        "label": "Retry",
+        "line": 233
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 7,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "8f9eb66de150468ab4a3bd96446c83f5",
+    "screenTitle": "System Settings",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 111
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 115
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 119
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 133
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 136
+      },
+      {
+        "type": "button",
+        "label": "Clear Storage",
+        "line": 236
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 163
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 174
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 192
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 205
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 223
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 111
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 115
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 119
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 133
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 136
+      },
+      {
+        "type": "button",
+        "label": "Clear Storage",
+        "line": 236
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 163
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 174
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 192
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 205
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 223
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 11,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "75cdf2759881434a9ce5827b67f8a91c",
+    "screenTitle": "Operational Insights",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 125
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 133
+      },
+      {
+        "type": "button",
+        "label": "search",
+        "line": 147
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 150
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 154
+      },
+      {
+        "type": "button",
+        "label": "Last 30 Days",
+        "line": 167
+      },
+      {
+        "type": "button",
+        "label": "Export Report",
+        "line": 171
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 241
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 125
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 133
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "search",
+        "line": 147
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 150
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 154
+      },
+      {
+        "type": "button",
+        "label": "Last 30 Days",
+        "line": 167
+      },
+      {
+        "type": "button",
+        "label": "Export Report",
+        "line": 171
+      },
+      {
+        "type": "button",
+        "label": "more_vert",
+        "line": 241
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 9,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "1aba762973c740e2bb913a2d1bc9d95d",
+    "screenTitle": "No Active Incidents",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 130
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 135
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 166
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 169
+      },
+      {
+        "type": "button",
+        "label": "Log First Incident",
+        "line": 197
+      },
+      {
+        "type": "input",
+        "label": "Search...",
+        "inputType": "text",
+        "placeholder": "Search...",
+        "line": 162
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 130
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 135
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 140
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 166
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 169
+      },
+      {
+        "type": "button",
+        "label": "Log First Incident",
+        "line": 197
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Search...",
+        "inputType": "text",
+        "placeholder": "Search...",
+        "line": 162
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 7,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "42ebf582584f4aa9a7ac278832b7ff0f",
+    "screenTitle": "Command Dashboard",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 139
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "button",
+        "label": "Notifications",
+        "line": 169
+      },
+      {
+        "type": "button",
+        "label": "Account",
+        "line": 172
+      },
+      {
+        "type": "button",
+        "label": "Create Incident",
+        "line": 185
+      },
+      {
+        "type": "button",
+        "label": "Active",
+        "line": 232
+      },
+      {
+        "type": "button",
+        "label": "Pending",
+        "line": 233
+      },
+      {
+        "type": "button",
+        "label": "Resolved",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "Critical",
+        "line": 240
+      },
+      {
+        "type": "button",
+        "label": "High",
+        "line": 243
+      },
+      {
+        "type": "button",
+        "label": "Medium",
+        "line": 246
+      },
+      {
+        "type": "button",
+        "label": "Low",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "filter_list",
+        "line": 255
+      },
+      {
+        "type": "input",
+        "label": "Search incidents...",
+        "inputType": "text",
+        "placeholder": "Search incidents...",
+        "line": 166
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 139
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 149
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "Notifications",
+        "line": 169
+      },
+      {
+        "type": "button",
+        "label": "Account",
+        "line": 172
+      },
+      {
+        "type": "button",
+        "label": "Create Incident",
+        "line": 185
+      },
+      {
+        "type": "button",
+        "label": "Active",
+        "line": 232
+      },
+      {
+        "type": "button",
+        "label": "Pending",
+        "line": 233
+      },
+      {
+        "type": "button",
+        "label": "Resolved",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "Critical",
+        "line": 240
+      },
+      {
+        "type": "button",
+        "label": "High",
+        "line": 243
+      },
+      {
+        "type": "button",
+        "label": "Medium",
+        "line": 246
+      },
+      {
+        "type": "button",
+        "label": "Low",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "filter_list",
+        "line": 255
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Search incidents...",
+        "inputType": "text",
+        "placeholder": "Search incidents...",
+        "line": 166
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 15,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "d2d54d3b581b4832b197284fe614c79b",
+    "screenTitle": "Incident Detail Summary",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 118
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 122
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 126
+      },
+      {
+        "type": "link",
+        "label": "Dashboard",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 142
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 145
+      },
+      {
+        "type": "button",
+        "label": "Export PDF",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "Assign Personnel",
+        "line": 177
+      },
+      {
+        "type": "button",
+        "label": "Status",
+        "line": 181
+      },
+      {
+        "type": "input",
+        "label": "Search...",
+        "inputType": "text",
+        "placeholder": "Search...",
+        "line": 140
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 118
+      },
+      {
+        "type": "link",
+        "label": "Insights",
+        "href": "#",
+        "line": 122
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 126
+      },
+      {
+        "type": "link",
+        "label": "Dashboard",
+        "href": "#",
+        "line": 152
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 142
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 145
+      },
+      {
+        "type": "button",
+        "label": "Export PDF",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "Assign Personnel",
+        "line": 177
+      },
+      {
+        "type": "button",
+        "label": "Status",
+        "line": 181
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Search...",
+        "inputType": "text",
+        "placeholder": "Search...",
+        "line": 140
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 10,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "4b23c0ec1cea40ee8cb9e30f87483604",
+    "screenTitle": "Account Profile",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "Close panel",
+        "line": 124
+      },
+      {
+        "type": "button",
+        "label": "Terminate Session",
+        "line": 190
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "Close panel",
+        "line": 124
+      },
+      {
+        "type": "button",
+        "label": "Terminate Session",
+        "line": 190
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [
+      "Jane Doe"
+    ],
+    "totalInteractive": 2,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "bc11442ad9424098a2bb5df8a358d80b",
+    "screenTitle": "New Incident Report",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "close",
+        "line": 176
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 182
+      },
+      {
+        "type": "button",
+        "label": "Cancel",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "Incident",
+        "line": 199
+      },
+      {
+        "type": "input",
+        "label": "Enter formal incident designation",
+        "inputType": "text",
+        "placeholder": "Enter formal incident designation",
+        "line": 123
+      },
+      {
+        "type": "input",
+        "label": "Enter precise location coordinates",
+        "inputType": "text",
+        "placeholder": "Enter precise location coordinates",
+        "line": 137
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 146
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 159
+      },
+      {
+        "type": "input",
+        "label": "Search roster to assign...",
+        "inputType": "text",
+        "placeholder": "Search roster to assign...",
+        "line": 185
+      },
+      {
+        "type": "input",
+        "label": "Provide detailed tactical situation report, initial response actions, and hazard assessment...",
+        "inputType": "textarea",
+        "placeholder": "Provide detailed tactical situation report, initial response actions, and hazard assessment...",
+        "line": 191
+      },
+      {
+        "type": "form",
+        "label": "form",
+        "line": 116
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "close",
+        "line": 176
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 182
+      },
+      {
+        "type": "button",
+        "label": "Cancel",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "Incident",
+        "line": 199
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Enter formal incident designation",
+        "inputType": "text",
+        "placeholder": "Enter formal incident designation",
+        "line": 123
+      },
+      {
+        "type": "input",
+        "label": "Enter precise location coordinates",
+        "inputType": "text",
+        "placeholder": "Enter precise location coordinates",
+        "line": 137
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 146
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 159
+      },
+      {
+        "type": "input",
+        "label": "Search roster to assign...",
+        "inputType": "text",
+        "placeholder": "Search roster to assign...",
+        "line": 185
+      },
+      {
+        "type": "input",
+        "label": "Provide detailed tactical situation report, initial response actions, and hazard assessment...",
+        "inputType": "textarea",
+        "placeholder": "Provide detailed tactical situation report, initial response actions, and hazard assessment...",
+        "line": 191
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 11,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  }
+]
