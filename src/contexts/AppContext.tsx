@@ -14,6 +14,7 @@ import {
   type OperatorProfile,
   DEFAULT_SETTINGS,
   DEFAULT_PROFILE,
+  STORAGE_VERSION,
 } from '../types/domain';
 import {
   loadState,
@@ -123,6 +124,7 @@ function reducer(state: AppState, action: Action): AppState {
         ...initialAppState(),
         currentScreen: 'dashboard',
         previousScreen: null,
+        isLoading: false,
       };
     default:
       return state;
@@ -149,7 +151,7 @@ function initialAppState(): AppState {
 
 function toPersistedState(state: AppState): PersistedState {
   return {
-    version: 1,
+    version: STORAGE_VERSION,
     incidents: state.incidents,
     units: state.units,
     resources: state.resources,
@@ -200,11 +202,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
     const timer = setTimeout(() => {
       if (!isStorageAvailable()) return;
-      retrySave(toPersistedState(state)).catch(() => {
-        dispatch({
-          type: 'SET_STORAGE_ERROR',
-          error: 'Auto-save failed. Changes may not persist.',
-        });
+      retrySave(toPersistedState(state)).then((ok) => {
+        if (!ok) {
+          dispatch({
+            type: 'SET_STORAGE_ERROR',
+            error: 'Auto-save failed. Changes may not persist.',
+          });
+        }
       });
     }, 500);
 

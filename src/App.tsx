@@ -3,7 +3,7 @@
  * and test-surface exposure via window.app.
  */
 
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense, useRef } from 'react';
 import { useAppContext } from './contexts/AppContext';
 import type { Incident, Unit, Resource } from './types/domain';
 
@@ -147,15 +147,18 @@ function ScreenLoader() {
 
 export default function App() {
   const { state, dispatch } = useAppContext();
+  const hasSeeded = useRef(false);
 
-  // Seed demo data on first load if storage was empty
+  // Seed demo data on first load if storage was empty (only once)
   useEffect(() => {
     if (state.isLoading) return;
+    if (hasSeeded.current) return;
     if (state.incidents.length === 0 && state.units.length === 0 && state.resources.length === 0) {
       dispatch({ type: 'SET_INCIDENTS', incidents: DEMO_INCIDENTS });
       dispatch({ type: 'SET_UNITS', units: DEMO_UNITS });
       dispatch({ type: 'SET_RESOURCES', resources: DEMO_RESOURCES });
     }
+    hasSeeded.current = true;
   }, [state.isLoading, state.incidents.length, state.units.length, state.resources.length, dispatch]);
 
   // Expose deterministic state for smoke / final-test gates
@@ -189,7 +192,7 @@ export default function App() {
     <div className="min-h-screen bg-background text-on-background" data-setfarm-root="app">
       <Suspense fallback={<ScreenLoader />}>
         {screen === 'dashboard' && (
-          state.incidents.filter((i) => i.status === 'active' || i.status === 'pending' || i.status === 'escalated').length > 0
+          state.incidents.some((i) => i.status === 'active' || i.status === 'pending' || i.status === 'escalated')
             ? <CommandDashboard />
             : <NoActiveIncidents />
         )}
@@ -209,7 +212,7 @@ export default function App() {
               state.toast.type === 'error'
                 ? 'bg-error-container border-error text-on-error-container'
                 : state.toast.type === 'success'
-                ? 'bg-primary-container border-primary text-white'
+                ? 'bg-primary-container border-primary text-on-primary-container'
                 : 'bg-surface-container border-outline-variant text-on-surface'
             }`}
           >
