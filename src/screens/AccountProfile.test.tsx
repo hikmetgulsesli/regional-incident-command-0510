@@ -58,7 +58,7 @@ describe('AccountProfile', () => {
     await waitFor(() => {
       expect(screen.getByText('Operator Profile')).toBeInTheDocument();
     });
-    const toggleBtn = screen.getByText('High Contrast Mode').closest('div')?.parentElement?.querySelector('button[aria-pressed]') as HTMLButtonElement;
+    const toggleBtn = screen.getByRole('button', { name: /High Contrast Mode toggle/i });
     expect(toggleBtn).toHaveAttribute('aria-pressed', 'false');
     fireEvent.click(toggleBtn);
     await waitFor(() => {
@@ -71,7 +71,7 @@ describe('AccountProfile', () => {
     await waitFor(() => {
       expect(screen.getByText('Operator Profile')).toBeInTheDocument();
     });
-    const toggleBtn = screen.getByText('Reduce Motion').closest('div')?.parentElement?.querySelector('button[aria-pressed]') as HTMLButtonElement;
+    const toggleBtn = screen.getByRole('button', { name: /Reduce Motion toggle/i });
     expect(toggleBtn).toHaveAttribute('aria-pressed', 'true');
     fireEvent.click(toggleBtn);
     await waitFor(() => {
@@ -84,7 +84,7 @@ describe('AccountProfile', () => {
     await waitFor(() => {
       expect(screen.getByText('Operator Profile')).toBeInTheDocument();
     });
-    const toggleBtn = screen.getByText('Large Text Data').closest('div')?.parentElement?.querySelector('button[aria-pressed]') as HTMLButtonElement;
+    const toggleBtn = screen.getByRole('button', { name: /Large Text Data toggle/i });
     expect(toggleBtn).toHaveAttribute('aria-pressed', 'false');
     fireEvent.click(toggleBtn);
     await waitFor(() => {

@@ -50,9 +50,7 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const checkboxes = screen.getAllByRole('checkbox');
-    // First checkbox is Email Notifications
-    const emailToggle = checkboxes[0];
+    const emailToggle = screen.getByRole('checkbox', { name: /Email Notifications/i });
     expect(emailToggle).toBeChecked();
     fireEvent.click(emailToggle);
     await waitFor(() => {
@@ -65,9 +63,7 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const checkboxes = screen.getAllByRole('checkbox');
-    // Second checkbox is Real-time Alerts
-    const alertsToggle = checkboxes[1];
+    const alertsToggle = screen.getByRole('checkbox', { name: /Real-time Alerts/i });
     expect(alertsToggle).not.toBeChecked();
     fireEvent.click(alertsToggle);
     await waitFor(() => {
@@ -90,9 +86,7 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const checkboxes = screen.getAllByRole('checkbox');
-    // Third checkbox is Map Overlay
-    const overlayToggle = checkboxes[2];
+    const overlayToggle = screen.getByRole('checkbox', { name: /Map Overlay/i });
     expect(overlayToggle).not.toBeChecked();
     fireEvent.click(overlayToggle);
     await waitFor(() => {
@@ -126,7 +120,7 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const notifBtn = screen.getByLabelText(/Notifications/i);
+    const notifBtn = screen.getByRole('button', { name: /Notifications/i });
     expect(() => fireEvent.click(notifBtn)).not.toThrow();
   });
 

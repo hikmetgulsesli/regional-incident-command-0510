@@ -8,8 +8,17 @@
 // 4. Replace placeholder data with props/state
 
 import { useAppContext } from '../contexts/AppContext';
+import type { AppSettings } from '../types/domain';
 
 interface SystemSettingsProps {}
+
+type BooleanSettingKey = {
+  [K in keyof AppSettings]: AppSettings[K] extends boolean ? K : never
+}[keyof AppSettings];
+
+type StringSettingKey = {
+  [K in keyof AppSettings]: AppSettings[K] extends string ? K : never
+}[keyof AppSettings];
 
 export function SystemSettings(props: SystemSettingsProps) {
   const { state, dispatch, clearAndReset } = useAppContext();
@@ -19,14 +28,14 @@ export function SystemSettings(props: SystemSettingsProps) {
     dispatch({ type: 'NAVIGATE', screen });
   };
 
-  const handleToggle = (key: keyof typeof settings) => {
+  const handleToggle = (key: BooleanSettingKey) => {
     dispatch({
       type: 'UPDATE_SETTINGS',
       settings: { [key]: !settings[key] },
     });
   };
 
-  const handleSelectChange = (key: keyof typeof settings, value: string) => {
+  const handleSelectChange = (key: StringSettingKey, value: string) => {
     dispatch({
       type: 'UPDATE_SETTINGS',
       settings: { [key]: value },
@@ -111,6 +120,7 @@ export function SystemSettings(props: SystemSettingsProps) {
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
+                      aria-label="Email Notifications"
                         checked={settings.emailNotifications}
                         className="sr-only peer"
                         onChange={() => handleToggle('emailNotifications')}
@@ -128,6 +138,7 @@ export function SystemSettings(props: SystemSettingsProps) {
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
+                      aria-label="Real-time Alerts"
                         checked={settings.realTimeAlerts}
                         className="sr-only peer"
                         onChange={() => handleToggle('realTimeAlerts')}
@@ -169,6 +180,7 @@ export function SystemSettings(props: SystemSettingsProps) {
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
+                      aria-label="Map Overlay"
                         checked={settings.mapOverlay}
                         className="sr-only peer"
                         onChange={() => handleToggle('mapOverlay')}
