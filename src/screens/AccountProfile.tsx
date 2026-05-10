@@ -80,7 +80,7 @@ export function AccountProfile(props: AccountProfileProps) {
             </section>
             {/* Accessibility & Environment Toggles */}
             <section className="flex flex-col gap-gutter">
-              <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Environment Configuration</h3>
+              <h2 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Environment Configuration</h2>
               <div className="border border-outline-variant bg-surface-container flex flex-col divide-y divide-outline-variant">
                 {/* Toggle Item 1 */}
                 <div className="flex items-center justify-between p-gutter min-h-[56px]">
