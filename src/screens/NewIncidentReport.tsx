@@ -62,8 +62,7 @@ export function NewIncidentReport(props: NewIncidentReportProps) {
     setSaving(true);
     const now = new Date().toISOString();
     const incident = {
-      id: `inc-${Date.now()}`,
-      title: title.trim(),
+      id: `inc-${crypto.randomUUID()}`,      title: title.trim(),
       location: location.trim(),
       severity,
       status,
@@ -233,7 +232,7 @@ export function NewIncidentReport(props: NewIncidentReportProps) {
           </button>
           <button
             className="h-touch-target px-6 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-md text-label-md hover:brightness-110 transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background shadow-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            type="button"
+            type="submit"
             onClick={handleSave}
             disabled={saving}
           >

@@ -36,8 +36,13 @@ export function CommandDashboard(props: CommandDashboardProps) {
   const profile = state.profile;
 
   // Compute metrics from state
-  const activeIncidents = useMemo(
+  const openIncidents = useMemo(
     () => state.incidents.filter((i) => i.status === 'active' || i.status === 'escalated' || i.status === 'pending'),
+    [state.incidents]
+  );
+
+  const responseIncidents = useMemo(
+    () => state.incidents.filter((i) => i.status === 'active' || i.status === 'escalated'),
     [state.incidents]
   );
 
@@ -45,11 +50,11 @@ export function CommandDashboard(props: CommandDashboardProps) {
 
   // Avg response time in seconds (placeholder calculation: 4m 12s baseline, adjusted by active count)
   const avgResponseSeconds = useMemo(() => {
-    if (activeIncidents.length === 0) return 252; // 4m 12s
+    if (responseIncidents.length === 0) return 252; // 4m 12s
     const base = 240;
-    const variance = Math.min(activeIncidents.length * 12, 120);
+    const variance = Math.min(responseIncidents.length * 12, 120);
     return base + variance;
-  }, [activeIncidents.length]);
+  }, [responseIncidents.length]);
 
   const formatDuration = (seconds: number) => {
     const m = Math.floor(seconds / 60);
@@ -123,8 +128,19 @@ export function CommandDashboard(props: CommandDashboardProps) {
     }
   };
 
+  const unitMap = useMemo(() => {
+    const map = new Map<string, typeof state.units[0]>();
+    for (const u of state.units) {
+      map.set(u.id, u);
+    }
+    return map;
+  }, [state.units]);
+
   const timeAgo = (iso: string) => {
-    const diff = Date.now() - new Date(iso).getTime();
+    const ts = new Date(iso).getTime();
+    if (Number.isNaN(ts)) return 'Unknown';
+    const diff = Date.now() - ts;
+    if (diff < 0) return 'Just now';
     const minutes = Math.floor(diff / 60000);
     if (minutes < 1) return 'Just now';
     if (minutes < 60) return `${minutes}m ago`;
@@ -237,7 +253,7 @@ export function CommandDashboard(props: CommandDashboardProps) {
                 <span className="material-symbols-outlined text-error">warning</span>
               </div>
               <div className="flex items-baseline gap-2 relative z-10">
-                <span className="font-display-lg text-display-lg text-on-surface">{activeIncidents.length}</span>
+                <span className="font-display-lg text-display-lg text-on-surface">{openIncidents.length}</span>
                 <span className="font-label-md text-label-md text-error flex items-center"><span className="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
               </div>
             </div>
@@ -373,7 +389,7 @@ export function CommandDashboard(props: CommandDashboardProps) {
                     <div className="flex items-center justify-between">
                       <div className="flex -space-x-2">
                         {incident.assignedUnits.slice(0, 3).map((unitId, idx) => {
-                          const unit = state.units.find((u) => u.id === unitId);
+                          const unit = unitMap.get(unitId);
                           const initials = unit ? unit.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase() : unitId.slice(-2).toUpperCase();
                           const colorClass = idx === 0 ? 'bg-primary/20 text-primary' : idx === 1 ? 'bg-error/20 text-error' : 'bg-secondary/20 text-secondary';
                           return (
