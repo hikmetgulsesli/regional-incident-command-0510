@@ -90,6 +90,7 @@ export function AccountProfile(props: AccountProfileProps) {
                   </div>
                   {/* Simulated Toggle (Off State) */}
                   <button
+                    aria-label="High Contrast Mode toggle"
                     aria-pressed={settings.highContrast}
                     className={`relative w-12 h-6 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface-container cursor-pointer transition-colors ${settings.highContrast ? 'bg-primary-container' : 'bg-surface-variant border border-outline-variant'}`}
                     onClick={() => handleToggle('highContrast')}
@@ -105,6 +106,7 @@ export function AccountProfile(props: AccountProfileProps) {
                   </div>
                   {/* Simulated Toggle (On State) */}
                   <button
+                    aria-label="Reduce Motion toggle"
                     aria-pressed={settings.reduceMotion}
                     className={`relative w-12 h-6 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface-container cursor-pointer transition-colors ${settings.reduceMotion ? 'bg-primary-container' : 'bg-surface-variant border border-outline-variant'}`}
                     onClick={() => handleToggle('reduceMotion')}
@@ -120,6 +122,7 @@ export function AccountProfile(props: AccountProfileProps) {
                   </div>
                   {/* Simulated Toggle (Off State) */}
                   <button
+                    aria-label="Large Text Data toggle"
                     aria-pressed={settings.largeText}
                     className={`relative w-12 h-6 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface-container cursor-pointer transition-colors ${settings.largeText ? 'bg-primary-container' : 'bg-surface-variant border border-outline-variant'}`}
                     onClick={() => handleToggle('largeText')}

@@ -16,7 +16,7 @@ const validState = {
   resources: [],
   settings: {
     emailNotifications: true,
-    smsAlerts: false,
+    realTimeAlerts: false,
     autoDispatch: false,
     dataRetentionDays: 90,
     highContrast: false,

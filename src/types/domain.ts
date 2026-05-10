@@ -43,7 +43,7 @@ export interface Resource {
 
 export interface AppSettings {
   emailNotifications: boolean;
-  smsAlerts: boolean;
+  realTimeAlerts: boolean;
   autoDispatch: boolean;
   dataRetentionDays: number;
   highContrast: boolean;
@@ -88,7 +88,7 @@ export interface AppState {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   emailNotifications: true,
-  smsAlerts: false,
+  realTimeAlerts: false,
   autoDispatch: false,
   dataRetentionDays: 90,
   highContrast: false,

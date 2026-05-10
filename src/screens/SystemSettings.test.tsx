@@ -11,7 +11,7 @@ function StateSeeder() {
       type: 'UPDATE_SETTINGS',
       settings: {
         emailNotifications: true,
-        smsAlerts: false,
+        realTimeAlerts: false,
         defaultView: 'Global Dashboard',
         mapOverlay: false,
         dataRetentionInterval: '1 Hour',
