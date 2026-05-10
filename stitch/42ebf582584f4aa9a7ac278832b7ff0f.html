@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Regional Incident Command - Dashboard</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 20px; /* Default sizing based on typography */
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#233144",
+                    "surface-container-low": "#191b23",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb596",
+                    "surface": "#11131b",
+                    "surface-container-lowest": "#0c0e16",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-tertiary": "#581e00",
+                    "secondary-container": "#3c4a5e",
+                    "secondary": "#b9c7df",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-primary-container": "#eeefff",
+                    "surface-variant": "#32343d",
+                    "surface-tint": "#b4c5ff",
+                    "inverse-on-surface": "#2e3039",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface-dim": "#11131b",
+                    "surface-container-high": "#282a32",
+                    "tertiary-container": "#bc4800",
+                    "on-surface": "#e1e2ed",
+                    "error": "#ffb4ab",
+                    "on-primary": "#002a78",
+                    "inverse-primary": "#0053db",
+                    "on-tertiary-fixed": "#360f00",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "background": "#11131b",
+                    "on-surface-variant": "#c3c6d7",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-container": "#abb9d1",
+                    "primary": "#b4c5ff",
+                    "outline-variant": "#434655",
+                    "primary-container": "#2563eb",
+                    "surface-container": "#1d1f27",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-fixed": "#00174b",
+                    "on-background": "#e1e2ed",
+                    "error-container": "#93000a",
+                    "surface-bright": "#373942",
+                    "tertiary-fixed": "#ffdbcd",
+                    "secondary-fixed": "#d5e3fc",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "outline": "#8d90a0",
+                    "surface-container-highest": "#32343d",
+                    "inverse-surface": "#e1e2ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "unit": "8px",
+                    "touch-target": "44px",
+                    "gutter": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "mono-data": ["monospace"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md h-screen w-screen overflow-hidden flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full w-64 bg-surface-container dark:bg-surface-container border-r border-outline-variant flex flex-col p-unit gap-base z-40">
+<!-- Header -->
+<div class="px-unit py-gutter mb-gutter flex items-center gap-gutter border-b border-outline-variant">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center border border-outline-variant overflow-hidden shrink-0">
+<img alt="Command Operator Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a serious military or emergency response operator in a dark, high-tech command center. Subtle blue light reflects on their face, conveying a tense, focused mood typical of high-stakes environments." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVzj9raCSIPFq8fCrtECl36nnym-1qafCXFirRDmD-EN7a87o4f28buMh4sjbzG2UeiTpEkB10KJtjm-Naa9M3Xz0ULUdvdaILix15t0dSSb81dOED9zTh8i8vxKcy3NrtY2ldKUlTozcA9cr_l04aEZZrT1HZHmB4FO6Z9J--S_G4NfbwSWls_itdNacTBP3Z8ajFIY4mAHxxROjHQlTeGfsSiTSvWRLXWZnSu3buej1Ianz0dW7rzZ_Bu0xhj4aVklOVqmwyjyI"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">HQ Alpha</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Sector 7 Command</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-base flex-1">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-unit px-gutter py-2 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-label-md cursor-pointer active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<!-- Inactive Tab: Insights -->
+<a class="flex items-center gap-unit px-gutter py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all rounded-lg font-label-md text-label-md cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+                Insights
+            </a>
+<!-- Inactive Tab: Settings -->
+<a class="flex items-center gap-unit px-gutter py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all rounded-lg font-label-md text-label-md cursor-pointer active:opacity-80 mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-64 flex-1 flex flex-col h-full bg-background relative overflow-hidden">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-gutter h-touch-target z-50 bg-surface dark:bg-surface border-b border-outline-variant shrink-0">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface tracking-tight">Regional Incident Command</span>
+</div>
+<div class="flex items-center gap-gutter">
+<!-- Search Bar (on_right logic) -->
+<div class="relative hidden md:flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none" style="font-size: 18px;">search</span>
+<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md rounded pl-10 pr-4 py-1.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 placeholder:text-outline transition-colors" placeholder="Search incidents..." type="text"/>
+</div>
+<!-- Trailing Icon Actions -->
+<button aria-label="Notifications" class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="Account" class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-container-padding">
+<!-- Page Header & Global Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-gutter">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-base">Situation Overview</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Live telemetry and active response dispatch.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container hover:bg-primary border border-primary-container font-label-md text-label-md px-gutter h-10 rounded inline-flex items-center justify-center gap-unit transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer shadow-[0_0_15px_rgba(37,99,235,0.2)]">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                    Create Incident
+                </button>
+</div>
+<!-- Asymmetric Bento Grid - Quick Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Stat 1: Active Incidents (Emphasis) -->
+<div class="bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-32 h-32 bg-error/10 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Incidents</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-on-surface">24</span>
+<span class="font-label-md text-label-md text-error flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
+</div>
+</div>
+<!-- Stat 2: Personnel Deployed -->
+<div class="bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Personnel</span>
+<span class="material-symbols-outlined text-primary">group</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">1,402</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Active units</span>
+</div>
+</div>
+<!-- Stat 3: Response Time -->
+<div class="bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg Response Time</span>
+<span class="material-symbols-outlined text-secondary">timer</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">4m 12s</span>
+<span class="font-label-md text-label-md text-primary flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_downward</span> 2%</span>
+</div>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="bg-surface border border-outline-variant rounded-lg p-unit flex flex-wrap gap-gutter items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant pl-2">Status:</span>
+<div class="flex border border-outline-variant rounded overflow-hidden">
+<button class="px-4 py-1.5 bg-surface-variant text-on-surface font-label-md text-label-md border-r border-outline-variant">Active</button>
+<button class="px-4 py-1.5 bg-surface text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md border-r border-outline-variant transition-colors">Pending</button>
+<button class="px-4 py-1.5 bg-surface text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md transition-colors">Resolved</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Severity:</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-error bg-error/10 text-error font-label-md text-label-md flex items-center gap-1 hover:bg-error/20 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Critical
+                        </button>
+<button class="px-3 py-1 rounded border border-tertiary bg-tertiary/10 text-tertiary font-label-md text-label-md flex items-center gap-1 hover:bg-tertiary/20 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> High
+                        </button>
+<button class="px-3 py-1 rounded border border-primary bg-primary/10 text-primary font-label-md text-label-md flex items-center gap-1 hover:bg-primary/20 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Medium
+                        </button>
+<button class="px-3 py-1 rounded border border-outline-variant bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center gap-1 hover:bg-surface-variant transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Low
+                        </button>
+</div>
+</div>
+<div class="flex-1 flex justify-end">
+<button class="p-1.5 rounded border border-outline-variant bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Data Grid (Incident Cards) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Incident Card: Critical -->
+<div class="bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col relative overflow-hidden hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="font-mono-data text-mono-data text-on-surface-variant">INC-9942</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="font-label-md text-label-md text-on-surface">Active</span>
+</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 12m ago
+                        </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 pr-4">Industrial Chemical Spill</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Large scale toxic leak reported at primary manufacturing sector. Immediate evacuation protocol initiated.</p>
+<div class="mt-auto flex flex-col gap-2 pt-3 border-t border-outline-variant/50">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Sector 4, Dist 9
+                            </span>
+<span class="font-label-md text-label-md text-error uppercase">Critical</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded border border-surface bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary" title="Hazmat Unit">HZ</div>
+<div class="w-6 h-6 rounded border border-surface bg-error/20 flex items-center justify-center text-[10px] font-bold text-error" title="Medical Unit">MD</div>
+<div class="w-6 h-6 rounded border border-surface bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+3</div>
+</div>
+<span class="font-label-md text-label-md text-primary group-hover:underline">View Details</span>
+</div>
+</div>
+</div>
+<!-- Incident Card: High -->
+<div class="bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col relative overflow-hidden hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="font-mono-data text-mono-data text-on-surface-variant">INC-9941</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="font-label-md text-label-md text-on-surface">Active</span>
+</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 45m ago
+                        </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 pr-4">Multi-Vehicle Collision</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Major pileup on interstate. Multiple entrapments reported. Traffic blocked in both directions.</p>
+<div class="mt-auto flex flex-col gap-2 pt-3 border-t border-outline-variant/50">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Highway 101, MM 42
+                            </span>
+<span class="font-label-md text-label-md text-tertiary uppercase">High</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded border border-surface bg-error/20 flex items-center justify-center text-[10px] font-bold text-error" title="Medical Unit">MD</div>
+<div class="w-6 h-6 rounded border border-surface bg-secondary/20 flex items-center justify-center text-[10px] font-bold text-secondary" title="Police Unit">PD</div>
+</div>
+<span class="font-label-md text-label-md text-primary group-hover:underline">View Details</span>
+</div>
+</div>
+</div>
+<!-- Incident Card: Medium -->
+<div class="bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col relative overflow-hidden hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="font-mono-data text-mono-data text-on-surface-variant">INC-9938</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md text-on-surface">Active</span>
+</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 1h 12m ago
+                        </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 pr-4">Structural Fire - Commercial</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Two-story warehouse fire. Currently contained but requires ongoing suppression efforts.</p>
+<div class="mt-auto flex flex-col gap-2 pt-3 border-t border-outline-variant/50">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Industrial Park, B-Block
+                            </span>
+<span class="font-label-md text-label-md text-primary uppercase">Medium</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded border border-surface bg-tertiary/20 flex items-center justify-center text-[10px] font-bold text-tertiary" title="Fire Unit">FD</div>
+</div>
+<span class="font-label-md text-label-md text-primary group-hover:underline">View Details</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

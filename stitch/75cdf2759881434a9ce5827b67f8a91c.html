@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Regional Incident Command - Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#233144",
+                        "surface-container-low": "#191b23",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb596",
+                        "surface": "#11131b",
+                        "surface-container-lowest": "#0c0e16",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-tertiary": "#581e00",
+                        "secondary-container": "#3c4a5e",
+                        "secondary": "#b9c7df",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary-container": "#eeefff",
+                        "surface-variant": "#32343d",
+                        "surface-tint": "#b4c5ff",
+                        "inverse-on-surface": "#2e3039",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-dim": "#11131b",
+                        "surface-container-high": "#282a32",
+                        "tertiary-container": "#bc4800",
+                        "on-surface": "#e1e2ed",
+                        "error": "#ffb4ab",
+                        "on-primary": "#002a78",
+                        "inverse-primary": "#0053db",
+                        "on-tertiary-fixed": "#360f00",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "background": "#11131b",
+                        "on-surface-variant": "#c3c6d7",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-container": "#abb9d1",
+                        "primary": "#b4c5ff",
+                        "outline-variant": "#434655",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#1d1f27",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-background": "#e1e2ed",
+                        "error-container": "#93000a",
+                        "surface-bright": "#373942",
+                        "tertiary-fixed": "#ffdbcd",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "outline": "#8d90a0",
+                        "surface-container-highest": "#32343d",
+                        "inverse-surface": "#e1e2ed"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "unit": "8px",
+                        "touch-target": "44px",
+                        "gutter": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "mono-data": ["monospace"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "mono-data": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0F172A; color: #e1e2ed; }
+        .glass-panel {
+            background-color: #1E293B;
+            border: 1px solid #334155;
+        }
+        .chart-bar-1 { height: 60%; background-color: #2563eb; }
+        .chart-bar-2 { height: 80%; background-color: #b4c5ff; }
+        .chart-bar-3 { height: 40%; background-color: #3c4a5e; }
+        .chart-bar-4 { height: 90%; background-color: #2563eb; }
+        .chart-bar-5 { height: 50%; background-color: #b4c5ff; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden antialiased font-body-lg text-body-lg">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full w-64 bg-surface-container dark:bg-surface-container border-r border-outline-variant p-unit gap-base fixed left-0 top-0 z-40 pt-[calc(theme(spacing.touch-target)+theme(spacing.container-padding))]">
+<div class="px-gutter mb-6">
+<div class="flex items-center gap-3 mb-2">
+<img alt="Command Operator Profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A close-up, highly professional headshot of a tactical operations commander in a dark, high-tech command center environment. The lighting is dramatic, with cool blue monitor glows reflecting on their face, conveying intense focus and authority. The aesthetic is gritty yet polished, fitting a high-stakes, mission-critical corporate UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSb8q3dObn4VmQRtn99YMi03qNc6LMpXdDtDN-1XglSBOrB5APhHhAoDOmNG6WYwI0R3sVV2bGlz8zalbVSfNEiJ7Pg9DFL154ZhiKJJC70lC7ZrzXlwx2y_fp-8ZKxZiI9lJ0jmaX2joO_v4kwm3Id7Sav_LAsrv_eUW5BidT8mPzZKD2ztejayu3kVChQbQYS9j5mUp0dYi1joV5c4GRON-F7QOR7CVHDBrb2lXxGP4l2bZyO7MvlOPbTX6vOhRT9J_MBisfrjo"/>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary">HQ Alpha</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Sector 7 Command</div>
+</div>
+</div>
+</div>
+<a class="flex items-center gap-3 px-gutter py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-gutter py-3 rounded-lg bg-secondary-container text-on-secondary-container transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-gutter py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-gutter h-touch-target z-50 bg-surface dark:bg-surface border-b border-outline-variant sticky top-0">
+<div class="flex items-center gap-4">
+<div class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface md:hidden">RIC</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface hidden md:block">Regional Incident Command</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Insights Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding bg-background">
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Performance Insights</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time metrics and historical trend analysis for Sector 7.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 rounded glass-panel text-on-surface-variant hover:bg-surface-variant/50 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Last 30 Days
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded bg-primary-container text-white hover:bg-primary-container/90 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- KPI Summary Cards (Bento Grid Top Row) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+<!-- KPI 1 -->
+<div class="glass-panel p-6 rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Incidents</div>
+<span class="material-symbols-outlined text-primary-container">warning</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface mb-1">1,248</div>
+<div class="flex items-center gap-1 text-tertiary-fixed-dim font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+12.4% vs last mo</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="glass-panel p-6 rounded-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg Response Time</div>
+<span class="material-symbols-outlined text-secondary">timer</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface mb-1">4m 12s</div>
+<div class="flex items-center gap-1 text-[#4ade80] font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+<span>-0.5% vs last mo</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="glass-panel p-6 rounded-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary-fixed-dim"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Units</div>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">local_police</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface mb-1">84/100</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">info</span>
+<span>Near capacity threshold</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="glass-panel p-6 rounded-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-[#4ade80]"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Resolution Rate</div>
+<span class="material-symbols-outlined text-[#4ade80]">check_circle</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface mb-1">94.2%</div>
+<div class="flex items-center gap-1 text-[#4ade80] font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+2.1% vs last mo</span>
+</div>
+</div>
+</div>
+<!-- Complex Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Trend Line Chart Area -->
+<div class="lg:col-span-2 glass-panel rounded-lg p-6 flex flex-col h-[400px]">
+<div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Incident Trends</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Volume vs Capacity over time</p>
+</div>
+<button class="p-2 hover:bg-surface-variant rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Faux Line Chart Visualization -->
+<div class="flex-1 relative w-full h-full border-l border-b border-outline-variant pl-2 pb-2 mt-4">
+<!-- Y-Axis Labels -->
+<div class="absolute -left-8 top-0 font-mono-data text-mono-data text-on-surface-variant text-xs">500</div>
+<div class="absolute -left-8 top-1/2 font-mono-data text-mono-data text-on-surface-variant text-xs">250</div>
+<div class="absolute -left-6 bottom-0 font-mono-data text-mono-data text-on-surface-variant text-xs">0</div>
+<!-- Grid Lines -->
+<div class="absolute top-1/2 w-full border-t border-outline-variant border-dashed opacity-50"></div>
+<div class="absolute top-1/4 w-full border-t border-outline-variant border-dashed opacity-30"></div>
+<div class="absolute top-3/4 w-full border-t border-outline-variant border-dashed opacity-30"></div>
+<!-- Faux Line (SVG) -->
+<svg class="w-full h-full absolute inset-0 pl-2 pb-2" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Trend Area -->
+<path d="M0 80 Q 20 60, 40 70 T 80 40 T 100 30 L 100 100 L 0 100 Z" fill="url(#gradient-primary)" opacity="0.1"></path>
+<!-- Trend Line -->
+<path d="M0 80 Q 20 60, 40 70 T 80 40 T 100 30" fill="none" stroke="#2563eb" stroke-width="2"></path>
+<!-- Capacity Line -->
+<path d="M0 50 L 100 50" fill="none" stroke="#ffb596" stroke-dasharray="2,2" stroke-width="1"></path>
+<!-- Data Points -->
+<circle cx="40" cy="70" fill="#1E293B" r="1.5" stroke="#2563eb" stroke-width="1"></circle>
+<circle cx="80" cy="40" fill="#1E293B" r="1.5" stroke="#2563eb" stroke-width="1"></circle>
+<circle cx="100" cy="30" fill="#1E293B" r="1.5" stroke="#2563eb" stroke-width="1"></circle>
+<defs>
+<lineargradient id="gradient-primary" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2563eb"></stop>
+<stop offset="100%" stop-color="#2563eb" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute -bottom-6 left-0 font-mono-data text-mono-data text-on-surface-variant text-xs">Week 1</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono-data text-mono-data text-on-surface-variant text-xs">Week 2</div>
+<div class="absolute -bottom-6 right-0 font-mono-data text-mono-data text-on-surface-variant text-xs">Week 4</div>
+</div>
+</div>
+<!-- Right Column Stack -->
+<div class="flex flex-col gap-6">
+<!-- Resource Allocation (Faux Pie Chart) -->
+<div class="glass-panel rounded-lg p-6 flex-1">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Resource Allocation</h2>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">pie_chart</span>
+</div>
+<div class="flex items-center justify-center h-[180px] relative">
+<!-- CSS Faux Donut Chart -->
+<div class="w-32 h-32 rounded-full border-[16px] border-surface-container relative" style="border-color: #2563eb; border-right-color: #b4c5ff; border-bottom-color: #3c4a5e; transform: rotate(-45deg);"></div>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-display-lg text-headline-md text-on-surface font-bold">100%</span>
+<span class="font-label-md text-[10px] text-on-surface-variant uppercase">Deployed</span>
+</div>
+</div>
+<div class="mt-4 space-y-3">
+<div class="flex justify-between items-center text-body-md font-body-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-primary-container"></div>
+<span class="text-on-surface">Patrol Units</span>
+</div>
+<span class="font-mono-data text-on-surface-variant">55%</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+<span class="text-on-surface">Tactical</span>
+</div>
+<span class="font-mono-data text-on-surface-variant">25%</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-secondary-container"></div>
+<span class="text-on-surface">Medical</span>
+</div>
+<span class="font-mono-data text-on-surface-variant">20%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Regional Response Efficiency (Bar Chart) -->
+<div class="mt-6 glass-panel rounded-lg p-6">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Regional Response Efficiency</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Average response time (minutes) by district</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary-container rounded-sm"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Target Met</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-tertiary-fixed-dim rounded-sm"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Exceeds Target</span>
+</div>
+</div>
+</div>
+<div class="h-[200px] flex items-end justify-between gap-2 mt-8 border-b border-outline-variant pb-2 relative">
+<!-- Target Line -->
+<div class="absolute top-[40%] w-full border-t border-tertiary-fixed-dim border-dashed z-10 opacity-70">
+<span class="absolute -top-5 right-0 font-mono-data text-[10px] text-tertiary-fixed-dim">Target: 5m</span>
+</div>
+<!-- Faux Bars -->
+<div class="w-full flex justify-center group relative">
+<div class="w-12 chart-bar-1 rounded-t-sm transition-all hover:opacity-80"></div>
+<div class="absolute -bottom-8 font-label-md text-label-md text-on-surface-variant">North</div>
+<div class="absolute -top-8 opacity-0 group-hover:opacity-100 font-mono-data text-mono-data text-on-surface bg-surface-container-highest px-2 py-1 rounded transition-opacity">4.2m</div>
+</div>
+<div class="w-full flex justify-center group relative">
+<div class="w-12 chart-bar-2 rounded-t-sm transition-all hover:opacity-80" style="background-color: #ffb596;"></div>
+<div class="absolute -bottom-8 font-label-md text-label-md text-on-surface-variant">South</div>
+<div class="absolute -top-8 opacity-0 group-hover:opacity-100 font-mono-data text-mono-data text-on-surface bg-surface-container-highest px-2 py-1 rounded transition-opacity">6.1m</div>
+</div>
+<div class="w-full flex justify-center group relative">
+<div class="w-12 chart-bar-3 rounded-t-sm transition-all hover:opacity-80"></div>
+<div class="absolute -bottom-8 font-label-md text-label-md text-on-surface-variant">East</div>
+<div class="absolute -top-8 opacity-0 group-hover:opacity-100 font-mono-data text-mono-data text-on-surface bg-surface-container-highest px-2 py-1 rounded transition-opacity">3.5m</div>
+</div>
+<div class="w-full flex justify-center group relative">
+<div class="w-12 chart-bar-4 rounded-t-sm transition-all hover:opacity-80" style="background-color: #ffb596;"></div>
+<div class="absolute -bottom-8 font-label-md text-label-md text-on-surface-variant">West</div>
+<div class="absolute -top-8 opacity-0 group-hover:opacity-100 font-mono-data text-mono-data text-on-surface bg-surface-container-highest px-2 py-1 rounded transition-opacity">7.0m</div>
+</div>
+<div class="w-full flex justify-center group relative">
+<div class="w-12 chart-bar-5 rounded-t-sm transition-all hover:opacity-80"></div>
+<div class="absolute -bottom-8 font-label-md text-label-md text-on-surface-variant">Central</div>
+<div class="absolute -top-8 opacity-0 group-hover:opacity-100 font-mono-data text-mono-data text-on-surface bg-surface-container-highest px-2 py-1 rounded transition-opacity">4.8m</div>
+</div>
+</div>
+<div class="h-8"></div> <!-- Spacing for labels -->
+</div>
+</main>
+</div>
+</body></html>

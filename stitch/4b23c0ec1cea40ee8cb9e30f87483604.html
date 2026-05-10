@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#233144",
+                        "surface-container-low": "#191b23",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb596",
+                        "surface": "#11131b",
+                        "surface-container-lowest": "#0c0e16",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-tertiary": "#581e00",
+                        "secondary-container": "#3c4a5e",
+                        "secondary": "#b9c7df",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary-container": "#eeefff",
+                        "surface-variant": "#32343d",
+                        "surface-tint": "#b4c5ff",
+                        "inverse-on-surface": "#2e3039",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-dim": "#11131b",
+                        "surface-container-high": "#282a32",
+                        "tertiary-container": "#bc4800",
+                        "on-surface": "#e1e2ed",
+                        "error": "#ffb4ab",
+                        "on-primary": "#002a78",
+                        "inverse-primary": "#0053db",
+                        "on-tertiary-fixed": "#360f00",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "background": "#11131b",
+                        "on-surface-variant": "#c3c6d7",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-container": "#abb9d1",
+                        "primary": "#b4c5ff",
+                        "outline-variant": "#434655",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#1d1f27",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-background": "#e1e2ed",
+                        "error-container": "#93000a",
+                        "surface-bright": "#373942",
+                        "tertiary-fixed": "#ffdbcd",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "outline": "#8d90a0",
+                        "surface-container-highest": "#32343d",
+                        "inverse-surface": "#e1e2ed"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "unit": "8px",
+                        "touch-target": "44px",
+                        "gutter": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "display-lg": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "mono-data": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "mono-data": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden">
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 z-40 bg-background/90 flex justify-end">
+<!-- Profile Panel (Slide-out) -->
+<aside class="w-full md:w-[480px] h-full bg-surface border-l border-outline-variant flex flex-col animate-slide-in">
+<!-- Header -->
+<header class="flex items-center justify-between px-container-padding py-gutter border-b border-outline-variant">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Operator Profile</h2>
+<button aria-label="Close panel" class="w-touch-target h-touch-target flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-container-padding">
+<!-- Identification Card (Bento Style) -->
+<section class="bg-surface-container border border-outline-variant p-container-padding flex flex-col sm:flex-row gap-gutter items-center sm:items-start text-center sm:text-left">
+<div class="shrink-0 w-24 h-24 rounded-full border-2 border-outline-variant overflow-hidden bg-surface-variant relative flex items-center justify-center">
+<img alt="Profile Photo" class="w-full h-full object-cover" data-alt="A professional headshot of a female military or emergency management commander in a dark, tactical uniform. The lighting is dramatic and cinematic, reminiscent of a high-tech command center. The background is a blurred dark slate grey, conveying a serious, utilitarian, and authoritative mood suitable for a mission-critical dashboard profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwz6JQxazjaqig8SXx4Liw-AgPtfV_6qdmdaablKK0BiE9RqwhOlEn_T3mXyq3MuOP9oYtdzzZl5SDHkwSvrcBq7JFPvs5d9TrXOh12WqtnBDt-3U7r_X3O0IeqxkYlm-0sQpxN9vaPiN6YdhZhTfVctNkkO0P2ZBvN-Mjaljze-i5dSSG2ssvUPBBVW06PTLdDZziyi_Zxx-jir3UksMDRE_8-hAPahLhg-7SlBOdKFs5MF1-FB7tGRcmb3QMiDsk3MqSEf8Tx_c"/>
+</div>
+<div class="flex flex-col gap-unit flex-1">
+<h1 class="font-headline-md text-headline-md text-on-surface">Cmdr. Jane Doe</h1>
+<div class="flex flex-col gap-base mt-2">
+<div class="flex items-center gap-unit text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Regional Supervisor</span>
+</div>
+<div class="flex items-center gap-unit text-primary font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Command Sector: HQ Alpha</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Accessibility & Environment Toggles -->
+<section class="flex flex-col gap-gutter">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Environment Configuration</h3>
+<div class="border border-outline-variant bg-surface-container flex flex-col divide-y divide-outline-variant">
+<!-- Toggle Item 1 -->
+<div class="flex items-center justify-between p-gutter min-h-[56px]">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">High Contrast Mode</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Enhance visual boundaries</span>
+</div>
+<!-- Simulated Toggle (Off State) -->
+<button aria-pressed="false" class="relative w-12 h-6 rounded-full bg-surface-variant border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface-container">
+<span class="absolute left-[2px] top-[2px] w-5 h-5 rounded-full bg-on-surface-variant transition-transform"></span>
+</button>
+</div>
+<!-- Toggle Item 2 -->
+<div class="flex items-center justify-between p-gutter min-h-[56px]">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Reduce Motion</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Disable interface animations</span>
+</div>
+<!-- Simulated Toggle (On State) -->
+<button aria-pressed="true" class="relative w-12 h-6 rounded-full bg-primary-container focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface-container">
+<span class="absolute right-[2px] top-[2px] w-5 h-5 rounded-full bg-on-primary-container transition-transform"></span>
+</button>
+</div>
+<!-- Toggle Item 3 -->
+<div class="flex items-center justify-between p-gutter min-h-[56px]">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Large Text Data</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Scale typography in data grids</span>
+</div>
+<!-- Simulated Toggle (Off State) -->
+<button aria-pressed="false" class="relative w-12 h-6 rounded-full bg-surface-variant border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface-container">
+<span class="absolute left-[2px] top-[2px] w-5 h-5 rounded-full bg-on-surface-variant transition-transform"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- Security Actions -->
+<section class="flex flex-col gap-gutter mt-auto pt-container-padding">
+<button class="w-full flex items-center justify-center gap-unit h-touch-target border border-outline-variant bg-transparent text-on-surface font-label-md text-label-md uppercase tracking-wider hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                        Terminate Session
+                    </button>
+</section>
+</div>
+</aside>
+</div>
+</body></html>

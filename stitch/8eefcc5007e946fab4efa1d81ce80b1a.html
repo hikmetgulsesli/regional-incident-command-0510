@@ -1,0 +1,49 @@
+# regional-incident-command-0510 PRD
+
+## Overview
+regional-incident-command-0510 turns the user's request into a directly usable application. The first screen is not a landing page; it is the real workflow surface where the user can inspect data, take actions, and recover from empty or error states. User-facing copy language: English. Pipeline metadata, story titles, component identifiers, and technical reports remain English.
+
+## Goals
+- Provide a working first-load experience with populated, empty, loading, and error states.
+- Ensure every visible button and icon button triggers a real route, state change, panel, modal, or form behavior.
+- Avoid text overflow, incoherent overlap, dead controls, and broken back navigation on mobile and desktop.
+- Persist data through localStorage or the chosen data layer with visible error, retry, and reset behavior.
+- Expose deterministic state so smoke, final-test, and deploy gates can verify the application surface.
+
+## Technical Decisions
+- Framework: React 18 + Vite + TypeScript.
+- Styling: Tailwind CSS or plain CSS modules with a restrained product-tool visual system.
+- State: React state plus reducer/context; avoid an extra global-state library for small apps.
+- Storage: localStorage with visible retry and clear actions for persistence failures.
+- Icons: Lucide React; do not use emoji as controls.
+- Test surface: expose state, active screen, errors, counters, and active panel under window.app.
+
+## Functional Requirements
+- R1: Deliver a working product surface where the first screen is the actual application workflow.
+- Forms provide required-field validation and visible error messages.
+- Filtering, search, create, edit, delete, profile, settings, retry, and clear actions produce visible state changes in smoke tests.
+- Product controls must not use data-smoke-ignore; intentionally unavailable controls are disabled or aria-disabled.
+
+## Data Model
+- Entity fields are defined as TypeScript types that match the task domain.
+- Every persisted record includes id, createdAt, and updatedAt.
+- Global preferences such as settings and profile data are separated from domain entity state.
+- Storage schema is versioned; corrupt JSON shows a visible error state instead of silently resetting.
+
+## UI/UX Requirements
+- User-facing language: English.
+- Aesthetic: corporate/minimal, quiet, scannable, and appropriate for repeated product use.
+- Palette: Primary #2563EB, Secondary #475569, Background #F8FAFC, Surface #FFFFFF, Text #0F172A, Border #E2E8F0, Success #16A34A, Error #DC2626, Warning #D97706.
+- Typography: Inter or system sans; compact panels use small but readable headings.
+- Components: cards at 8px radius or less, clear focus rings, and 44x44px touch targets.
+- The profile/account icon must open a panel, drawer, or page with close/back behavior.
+
+## Screens
+1. Dashboard: Primary data, filters, and the main product actions.
+2. Create Edit: CRUD form with validation, cancel, and save behavior.
+3. Detail: Selected record summary with secondary actions.
+4. Insights: Useful summary metrics for the user.
+5. Settings: Preferences and visible state-changing controls.
+6. Profile: Account details, toggles, and close behavior.
+7. Error State: Retry and clear actions for storage or runtime errors.
+8. Empty State: No-data state that guides the user to the first action.
