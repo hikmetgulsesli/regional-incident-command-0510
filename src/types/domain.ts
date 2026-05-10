@@ -49,6 +49,9 @@ export interface AppSettings {
   highContrast: boolean;
   reduceMotion: boolean;
   largeText: boolean;
+  defaultView: string;
+  mapOverlay: boolean;
+  dataRetentionInterval: string;
 }
 
 export interface OperatorProfile {
@@ -91,6 +94,9 @@ export const DEFAULT_SETTINGS: AppSettings = {
   highContrast: false,
   reduceMotion: false,
   largeText: false,
+  defaultView: 'Global Dashboard',
+  mapOverlay: false,
+  dataRetentionInterval: '1 Hour',
 };
 
 export const DEFAULT_PROFILE: OperatorProfile = {
