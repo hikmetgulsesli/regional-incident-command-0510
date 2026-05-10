@@ -8,10 +8,34 @@
 // 4. Replace placeholder data with props/state
 
 import { useState } from "react";
+import { useAppContext } from "../contexts/AppContext";
 
 interface SystemErrorRecoveryProps {}
 
 export function SystemErrorRecovery(props: SystemErrorRecoveryProps) {
+  const { state, dispatch, clearAndReset, persist } = useAppContext();
+  const [isRetrying, setIsRetrying] = useState(false);
+  const profile = state.profile;
+
+  const handleNavigate = (screen: 'dashboard' | 'insights' | 'settings') => {
+    dispatch({ type: 'NAVIGATE', screen });
+  };
+
+  const handleClearAndReset = () => {
+    if (window.confirm('Clear all app data and reset to defaults? This cannot be undone.')) {
+      clearAndReset();
+    }
+  };
+
+  const handleRetrySync = async () => {
+    setIsRetrying(true);
+    const ok = await persist();
+    setIsRetrying(false);
+    if (!ok) {
+      dispatch({ type: 'SHOW_TOAST', message: 'Sync retry failed. Please check storage availability.', toastType: 'error' });
+    }
+  };
+
   return (
     <>
       {/* SideNavBar */}
@@ -21,22 +45,31 @@ export function SystemErrorRecovery(props: SystemErrorRecoveryProps) {
       <img alt="Command Operator Profile" className="w-full h-full object-cover" data-alt="A close-up portrait of a serious male command operator in a dimly lit, high-tech control room environment. He is wearing a dark, utilitarian uniform. The lighting is moody and cinematic, emphasizing his focused expression and professional demeanor. The overall aesthetic aligns with a dark, mission-critical corporate minimalism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6uRUdbjZXDLYXQcd7c5bjuS6vDgv3rzF6P5wfyfeLMDpK3ag6apGTybexrzK6EZwaftVWNx_dMt53pg8D7yAJmLhe81OcujWPtFT7SbvVdR9lbYRHHBrOEPtZU6psDTnG-FvqYZggRxr2kofs2gBG-57p8Mn1ghAuIEDP8T0gMMEfUCGl3ajWGc2D1h9bS2ZGvPs3La4eCtUMs8ptyERqAABTn-o4hbTRWnA66mob_mNbFsR5VK-n26rQiZe6hM2cR5FQrqd8bMI" />
       </div>
       <div>
-      <h2 className="font-headline-sm text-headline-sm font-bold text-primary">HQ Alpha</h2>
-      <p className="font-label-md text-label-md text-on-surface-variant">Sector 7 Command</p>
+      <h2 className="font-headline-sm text-headline-sm font-bold text-primary">{profile.name || 'HQ Alpha'}</h2>
+      <p className="font-label-md text-label-md text-on-surface-variant">{profile.sector || 'Sector 7 Command'}</p>
       </div>
       </div>
-      <a className="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all active:opacity-80 transition-opacity" href="#">
+      <button
+        className="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all active:opacity-80 transition-opacity cursor-pointer"
+        onClick={() => handleNavigate('dashboard')}
+      >
       <span className="material-symbols-outlined">dashboard</span>
       <span className="font-label-md text-label-md">Dashboard</span>
-      </a>
-      <a className="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all active:opacity-80 transition-opacity" href="#">
+      </button>
+      <button
+        className="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all active:opacity-80 transition-opacity cursor-pointer"
+        onClick={() => handleNavigate('insights')}
+      >
       <span className="material-symbols-outlined">monitoring</span>
       <span className="font-label-md text-label-md">Insights</span>
-      </a>
-      <a className="flex items-center gap-3 px-3 py-3 rounded-lg bg-secondary-container text-on-secondary-container rounded-lg active:opacity-80 transition-opacity" href="#">
+      </button>
+      <button
+        className="flex items-center gap-3 px-3 py-3 rounded-lg bg-secondary-container text-on-secondary-container rounded-lg active:opacity-80 transition-opacity cursor-pointer"
+        onClick={() => handleNavigate('settings')}
+      >
       <span className="material-symbols-outlined">settings</span>
       <span className="font-label-md text-label-md">Settings</span>
-      </a>
+      </button>
       </nav>
       {/* Main Content Canvas */}
       <div className="flex-1 flex flex-col md:ml-64 relative">
@@ -46,17 +79,25 @@ export function SystemErrorRecovery(props: SystemErrorRecoveryProps) {
       <h1 className="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface">Regional Incident Command</h1>
       </div>
       <div className="flex items-center gap-4">
-      <button className="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" disabled={true}>
+      <button
+        aria-label="Notifications"
+        className="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform"
+        disabled={true}
+      >
       <span className="material-symbols-outlined">notifications</span>
       </button>
-      <button className="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" disabled={true}>
+      <button
+        aria-label="Account"
+        className="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform"
+        disabled={true}
+      >
       <span className="material-symbols-outlined">account_circle</span>
       </button>
       </div>
       </header>
       {/* Mobile Header (fallback) */}
       <header className="md:hidden flex justify-between items-center bg-surface px-gutter h-touch-target border-b border-outline-variant">
-      <h1 className="font-headline-sm text-headline-sm font-bold text-on-surface">HQ Alpha</h1>
+      <h1 className="font-headline-sm text-headline-sm font-bold text-on-surface">{profile.name || 'HQ Alpha'}</h1>
       </header>
       <main className="flex-1 overflow-y-auto p-container-padding flex items-center justify-center">
       {/* Error State Card */}
@@ -79,14 +120,21 @@ export function SystemErrorRecovery(props: SystemErrorRecoveryProps) {
       </div>
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-4 w-full">
-      <button className="flex-1 h-touch-target rounded-lg border border-[#334155] bg-transparent text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-background active:scale-95">
+      <button
+        className="flex-1 h-touch-target rounded-lg border border-[#334155] bg-transparent text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-background active:scale-95 cursor-pointer"
+        onClick={handleClearAndReset}
+      >
       <span className="material-symbols-outlined text-[18px]">delete_sweep</span>
-                              Clear App Data &amp; Reset
-                          </button>
-      <button className="flex-1 h-touch-target rounded-lg bg-primary-container text-white font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-[#1d4ed8] transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-background active:scale-95">
-      <span className="material-symbols-outlined text-[18px]">sync</span>
-                              Retry Sync
-                          </button>
+                          Clear App Data &amp; Reset
+                      </button>
+      <button
+        className="flex-1 h-touch-target rounded-lg bg-primary-container text-white font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-[#1d4ed8] transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-background active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={isRetrying}
+        onClick={handleRetrySync}
+      >
+      <span className={`material-symbols-outlined text-[18px] ${isRetrying ? 'animate-spin' : ''}`}>{isRetrying ? 'sync' : 'sync'}</span>
+                          {isRetrying ? 'Retrying...' : 'Retry Sync'}
+                      </button>
       </div>
       </div>
       </main>
