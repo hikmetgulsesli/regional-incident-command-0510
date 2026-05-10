@@ -1,0 +1,74 @@
+[
+  {
+    "screenId": "91b7b4b6ebcc49f2bc1a4ba4dcae3632",
+    "title": "System Error Recovery",
+    "componentName": "SystemErrorRecovery",
+    "file": "src/screens/SystemErrorRecovery.tsx",
+    "buttons": 4,
+    "inputs": 0,
+    "links": 3
+  },
+  {
+    "screenId": "8f9eb66de150468ab4a3bd96446c83f5",
+    "title": "System Settings",
+    "componentName": "SystemSettings",
+    "file": "src/screens/SystemSettings.tsx",
+    "buttons": 3,
+    "inputs": 3,
+    "links": 3
+  },
+  {
+    "screenId": "75cdf2759881434a9ce5827b67f8a91c",
+    "title": "Operational Insights",
+    "componentName": "OperationalInsights",
+    "file": "src/screens/OperationalInsights.tsx",
+    "buttons": 6,
+    "inputs": 0,
+    "links": 3
+  },
+  {
+    "screenId": "1aba762973c740e2bb913a2d1bc9d95d",
+    "title": "No Active Incidents",
+    "componentName": "NoActiveIncidents",
+    "file": "src/screens/NoActiveIncidents.tsx",
+    "buttons": 3,
+    "inputs": 1,
+    "links": 3
+  },
+  {
+    "screenId": "42ebf582584f4aa9a7ac278832b7ff0f",
+    "title": "Command Dashboard",
+    "componentName": "CommandDashboard",
+    "file": "src/screens/CommandDashboard.tsx",
+    "buttons": 11,
+    "inputs": 1,
+    "links": 3
+  },
+  {
+    "screenId": "d2d54d3b581b4832b197284fe614c79b",
+    "title": "Incident Detail Summary",
+    "componentName": "IncidentDetailSummary",
+    "file": "src/screens/IncidentDetailSummary.tsx",
+    "buttons": 5,
+    "inputs": 1,
+    "links": 4
+  },
+  {
+    "screenId": "4b23c0ec1cea40ee8cb9e30f87483604",
+    "title": "Account Profile",
+    "componentName": "AccountProfile",
+    "file": "src/screens/AccountProfile.tsx",
+    "buttons": 5,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "bc11442ad9424098a2bb5df8a358d80b",
+    "title": "New Incident Report",
+    "componentName": "NewIncidentReport",
+    "file": "src/screens/NewIncidentReport.tsx",
+    "buttons": 4,
+    "inputs": 3,
+    "links": 0
+  }
+]
