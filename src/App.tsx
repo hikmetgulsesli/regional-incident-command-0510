@@ -5,6 +5,7 @@
 
 import { useEffect, lazy, Suspense, useRef, useCallback } from 'react';
 import { useAppContext } from './contexts/AppContext';
+import { isStorageAvailable } from './utils/storage';
 import type { Incident, Unit, Resource, Screen } from './types/domain';
 
 // Lazy-load screen components to keep initial bundle light
@@ -150,6 +151,15 @@ function screenToHash(screen: Screen): string | null {
   return entry ? entry[0] : null;
 }
 
+function activeRouteToken(hash: string, screen: Screen): string {
+  const cleanHash = hash.trim();
+  if (cleanHash && HASH_SCREEN_MAP[cleanHash]) {
+    return cleanHash;
+  }
+
+  return screenToHash(screen) ?? screen;
+}
+
 function ScreenLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -210,12 +220,33 @@ export default function App() {
 
   // Expose deterministic state for smoke / final-test gates
   useEffect(() => {
+    const itemCount = state.incidents.length + state.units.length + state.resources.length;
+    const currentHash = window.location.hash.replace(/^#/, '');
+    const screen = activeRouteToken(currentHash, state.currentScreen);
+    const appState = {
+      ...state,
+      screen,
+      route: screen,
+      currentRoute: screen,
+    };
+
     (window as unknown as Record<string, unknown>).app = {
-      state,
+      state: appState,
+      screen,
+      route: screen,
+      currentRoute: screen,
+      currentScreen: state.currentScreen,
+      lastError: state.storageError,
+      storageStatus: isStorageAvailable(),
+      itemCount,
+      activePanel: state.profileOpen ? 'profile' : null,
       dispatch,
       renderToText: () =>
         JSON.stringify({
           screen: state.currentScreen,
+          routeScreen: screen,
+          currentScreen: state.currentScreen,
+          route: screen,
           incidentCount: state.incidents.length,
           unitCount: state.units.length,
           resourceCount: state.resources.length,
