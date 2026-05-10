@@ -50,7 +50,9 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const emailToggle = screen.getByText('Email Notifications').closest('div')?.querySelector('input[type="checkbox"]') as HTMLInputElement;
+    const checkboxes = screen.getAllByRole('checkbox');
+    // First checkbox is Email Notifications
+    const emailToggle = checkboxes[0];
     expect(emailToggle).toBeChecked();
     fireEvent.click(emailToggle);
     await waitFor(() => {
@@ -63,7 +65,9 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const alertsToggle = screen.getByText('Real-time Alerts').closest('div')?.querySelector('input[type="checkbox"]') as HTMLInputElement;
+    const checkboxes = screen.getAllByRole('checkbox');
+    // Second checkbox is Real-time Alerts
+    const alertsToggle = checkboxes[1];
     expect(alertsToggle).not.toBeChecked();
     fireEvent.click(alertsToggle);
     await waitFor(() => {
@@ -86,7 +90,9 @@ describe('SystemSettings', () => {
     await waitFor(() => {
       expect(screen.getByText('System Configuration')).toBeInTheDocument();
     });
-    const overlayToggle = screen.getByText('Map Overlay').closest('div')?.querySelector('input[type="checkbox"]') as HTMLInputElement;
+    const checkboxes = screen.getAllByRole('checkbox');
+    // Third checkbox is Map Overlay
+    const overlayToggle = checkboxes[2];
     expect(overlayToggle).not.toBeChecked();
     fireEvent.click(overlayToggle);
     await waitFor(() => {

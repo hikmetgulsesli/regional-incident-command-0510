@@ -22,6 +22,9 @@ const validState = {
     highContrast: false,
     reduceMotion: false,
     largeText: false,
+    defaultView: 'Global Dashboard',
+    mapOverlay: false,
+    dataRetentionInterval: '1 Hour',
   },
   profile: { name: 'Cmdr. Test', role: 'Tester', sector: 'Test Sector' },
 };
