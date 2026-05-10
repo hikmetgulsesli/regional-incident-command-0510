@@ -377,7 +377,7 @@ export function CommandDashboard(props: CommandDashboardProps) {
                       <span className="material-symbols-outlined text-[14px]">schedule</span> {timeAgo(incident.updatedAt)}
                     </span>
                   </div>
-                  <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2 pr-4">{incident.title}</h3>
+                  <h2 className="font-headline-sm text-headline-sm text-on-surface mb-2 pr-4">{incident.title}</h2>
                   <p className="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">{incident.description}</p>
                   <div className="mt-auto flex flex-col gap-2 pt-3 border-t border-outline-variant/50">
                     <div className="flex items-center justify-between">

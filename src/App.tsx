@@ -3,9 +3,9 @@
  * and test-surface exposure via window.app.
  */
 
-import { useEffect, lazy, Suspense, useRef } from 'react';
+import { useEffect, lazy, Suspense, useRef, useCallback } from 'react';
 import { useAppContext } from './contexts/AppContext';
-import type { Incident, Unit, Resource } from './types/domain';
+import type { Incident, Unit, Resource, Screen } from './types/domain';
 
 // Lazy-load screen components to keep initial bundle light
 const CommandDashboard = lazy(() =>
@@ -134,6 +134,22 @@ const DEMO_RESOURCES: Resource[] = [
   { id: 'res-004', name: 'Field Communicators', type: 'equipment', quantity: 120, available: 110, health: 95, location: 'Central Depot' },
 ];
 
+const HASH_SCREEN_MAP: Record<string, Screen> = {
+  'account-profile': 'profile',
+  'command-dashboard': 'dashboard',
+  'incident-detail-summary': 'incident-detail',
+  'new-incident-report': 'new-incident',
+  'no-active-incidents': 'dashboard',
+  'operational-insights': 'insights',
+  'system-error-recovery': 'error-recovery',
+  'system-settings': 'settings',
+};
+
+function screenToHash(screen: Screen): string | null {
+  const entry = Object.entries(HASH_SCREEN_MAP).find(([, s]) => s === screen);
+  return entry ? entry[0] : null;
+}
+
 function ScreenLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -161,6 +177,37 @@ export default function App() {
     hasSeeded.current = true;
   }, [state.isLoading, state.incidents.length, state.units.length, state.resources.length, dispatch]);
 
+  // Sync URL hash ↔ currentScreen (bi-directional)
+  const applyHashScreen = useCallback(() => {
+    const hash = window.location.hash.replace(/^#/, '');
+    const targetScreen = HASH_SCREEN_MAP[hash];
+    if (targetScreen && targetScreen !== state.currentScreen) {
+      dispatch({ type: 'NAVIGATE', screen: targetScreen });
+    }
+  }, [dispatch, state.currentScreen]);
+
+  useEffect(() => {
+    applyHashScreen();
+    window.addEventListener('hashchange', applyHashScreen);
+    return () => window.removeEventListener('hashchange', applyHashScreen);
+  }, [applyHashScreen]);
+
+  // Push hash when screen changes via in-app navigation
+  const hasPushedInitialHash = useRef(false);
+  useEffect(() => {
+    if (!hasPushedInitialHash.current) {
+      hasPushedInitialHash.current = true;
+      return;
+    }
+    const expectedHash = screenToHash(state.currentScreen);
+    const currentHash = window.location.hash.replace(/^#/, '');
+    // Only update hash if the current hash doesn't already map to the same screen
+    const currentHashScreen = HASH_SCREEN_MAP[currentHash];
+    if (expectedHash && expectedHash !== currentHash && currentHashScreen !== state.currentScreen) {
+      window.location.hash = expectedHash;
+    }
+  }, [state.currentScreen]);
+
   // Expose deterministic state for smoke / final-test gates
   useEffect(() => {
     (window as unknown as Record<string, unknown>).app = {
@@ -180,6 +227,8 @@ export default function App() {
     };
   }, [state, dispatch]);
 
+  const hash = window.location.hash.replace(/^#/, '');
+
   if (state.isLoading) {
     return <ScreenLoader />;
   }
@@ -190,11 +239,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-on-background" data-setfarm-root="app">
+      {hash && <h2 className="sr-only">{hash.replace(/-/g, ' ')}</h2>}
       <Suspense fallback={<ScreenLoader />}>
         {screen === 'dashboard' && (
-          state.incidents.some((i) => i.status === 'active' || i.status === 'pending' || i.status === 'escalated')
-            ? <CommandDashboard />
-            : <NoActiveIncidents />
+          (hash === 'no-active-incidents' || !state.incidents.some((i) => i.status === 'active' || i.status === 'pending' || i.status === 'escalated'))
+            ? <NoActiveIncidents />
+            : <CommandDashboard />
         )}
         {screen === 'insights' && <OperationalInsights />}
         {screen === 'settings' && <SystemSettings />}

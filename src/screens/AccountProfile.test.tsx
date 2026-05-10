@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '../test/utils';
 import { AccountProfile } from './AccountProfile';
 import { AppProvider, useAppContext } from '../contexts/AppContext';
@@ -33,6 +33,14 @@ function renderWithData() {
 }
 
 describe('AccountProfile', () => {
+  beforeEach(() => {
+    vi.stubGlobal('confirm', vi.fn(() => true));
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
   it('renders profile panel with operator data', async () => {
     renderWithData();
     await waitFor(() => {
@@ -100,5 +108,6 @@ describe('AccountProfile', () => {
     const terminateBtn = screen.getByText('Terminate Session');
     expect(terminateBtn).toBeInTheDocument();
     expect(() => fireEvent.click(terminateBtn)).not.toThrow();
+    expect(window.confirm).toHaveBeenCalledWith('Terminate your session? You will need to re-authenticate.');
   });
 });
